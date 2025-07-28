@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morse Fall Scale - Bahasa Indonesia</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>MORSE FALL SCALE</h1>
+        <h2>Skala Penilaian Risiko Jatuh</h2>
+      </div>
+
+      <div class="patient-info">
+        <div class="patient-field">
+          <label>Nama Pasien:</label>
+          <input type="text" id="patientName" />
+        </div>
+        <div class="patient-field">
+          <label>No. RM:</label>
+          <input type="text" id="medicalRecord" />
+        </div>
+        <div class="patient-field">
+          <label>Tanggal:</label>
+          <input type="date" id="assessmentDate" />
+        </div>
+        <div class="patient-field">
+          <label>Perawat:</label>
+          <input type="text" id="nurseName" />
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40%">Faktor Risiko</th>
+            <th style="width: 45%">Kriteria</th>
+            <th style="width: 15%">Skor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2" class="risk-factor">1. Riwayat Jatuh</td>
+            <td>Tidak ada riwayat jatuh dalam 3 bulan terakhir</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="fall_history"
+                value="0"
+                onchange="calculateTotal()"
+              />
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>Ada riwayat jatuh dalam 3 bulan terakhir</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="fall_history"
+                value="25"
+                onchange="calculateTotal()"
+              />
+              25
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2" class="risk-factor">2. Diagnosis Sekunder</td>
+            <td>Tidak ada diagnosis medis sekunder</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="secondary_diagnosis"
+                value="0"
+                onchange="calculateTotal()"
+              />
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>Ada diagnosis medis sekunder (≥ 2 diagnosis)</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="secondary_diagnosis"
+                value="15"
+                onchange="calculateTotal()"
+              />
+              15
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="3" class="risk-factor">3. Alat Bantu Ambulasi</td>
+            <td>Bedrest/dibantu perawat, kursi roda</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="ambulatory_aid"
+                value="0"
+                onchange="calculateTotal()"
+              />
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>Kruk, tongkat, walker</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="ambulatory_aid"
+                value="15"
+                onchange="calculateTotal()"
+              />
+              15
+            </td>
+          </tr>
+          <tr>
+            <td>Furniture/dinding sebagai penyangga</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="ambulatory_aid"
+                value="30"
+                onchange="calculateTotal()"
+              />
+              30
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2" class="risk-factor">4. Terapi IV/Akses Vena</td>
+            <td>Tidak ada terapi IV, saline lock, atau akses vena</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="iv_therapy"
+                value="0"
+                onchange="calculateTotal()"
+              />
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>Ada terapi IV, saline lock, atau akses vena</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="iv_therapy"
+                value="20"
+                onchange="calculateTotal()"
+              />
+              20
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="3" class="risk-factor">5. Gaya Berjalan</td>
+            <td>Normal/bedrest/immobile</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="gait"
+                value="0"
+                onchange="calculateTotal()"
+              />
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>Lemah (langkah pendek, menyeret kaki)</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="gait"
+                value="10"
+                onchange="calculateTotal()"
+              />
+              10
+            </td>
+          </tr>
+          <tr>
+            <td>Terganggu/tidak stabil</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="gait"
+                value="20"
+                onchange="calculateTotal()"
+              />
+              20
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2" class="risk-factor">6. Status Mental</td>
+            <td>Orientasi baik terhadap kemampuan diri</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="mental_status"
+                value="0"
+                onchange="calculateTotal()"
+              />
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>Lupa akan keterbatasan yang dimiliki</td>
+            <td class="score-box">
+              <input
+                type="radio"
+                name="mental_status"
+                value="15"
+                onchange="calculateTotal()"
+              />
+              15
+            </td>
+          </tr>
+
+          <tr class="total-row">
+            <td colspan="2"><strong>TOTAL SKOR</strong></td>
+            <td class="score-box" id="totalScore"><strong>0</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="interpretation">
+        <h3>Interpretasi Hasil:</h3>
+        <div class="risk-levels">
+          <div class="risk-level low-risk">
+            <div>RISIKO RENDAH</div>
+            <div>0-24 Poin</div>
+          </div>
+          <div class="risk-level medium-risk">
+            <div>RISIKO SEDANG</div>
+            <div>25-50 Poin</div>
+          </div>
+          <div class="risk-level high-risk">
+            <div>RISIKO TINGGI</div>
+            <div>≥ 51 Poin</div>
+          </div>
+        </div>
+        <div
+          id="riskLevel"
+          style="
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+          "
+        >
+          Silakan lengkapi penilaian untuk melihat tingkat risiko
+        </div>
+      </div>
+
+      <!-- <button class="export-button" onclick="exportToWord()">
+            📄 Export ke File Word
+        </button> -->
+
+      <button class="submit-button" onclick="submitToSheet()">
+        📤 Kirim ke Google Sheets
+      </button>
+
+      <div class="footer">
+        <p>
+          <strong>Morse Fall Scale</strong> - Dikembangkan oleh Janice M. Morse,
+          PhD, RN<br />
+          Versi Bahasa Indonesia untuk Penilaian Risiko Jatuh di Rumah Sakit
+        </p>
+      </div>
+    </div>
+
+    <script src="scale.js"></script>
+  </body>
+</html>
