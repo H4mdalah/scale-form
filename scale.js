@@ -79,6 +79,8 @@ function submitToSheet() {
 
   fetch("https://script.google.com/macros/s/AKfycbyl_-GZmQrQsB_b5SNuqqpR5MKaDPwvrQEUcdOHUH5jRtMlXaW4GpfSMVYP41XOVyJ0nQ/exec", {
     method: "POST",
+    mode: "no-cors",
+    credentials: "include",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
