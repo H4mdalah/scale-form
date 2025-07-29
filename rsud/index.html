@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Warning System (EWS) Dewasa - RSUP HAM Medan</title>
+    <link rel="stylesheet" href="/rsud/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="header"> -->
+            <!-- <div class="hospital-logo">
+                <div class="hospital-info">
+                    <h1>RUMAH SAKIT UMUM PUSAT HAJI ADAM MALIK</h1>
+                    <h2>Jl. Bunga Lau No. 17, Medan 20136</h2>
+                    <h2>Telp: (061) 8360143 - Fax: (061) 8360255</h2>
+                </div>
+            </div> -->
+        <!-- </div> -->
+        
+        <div class="form-title">
+            EARLY WARNING SYSTEM (EWS) DEWASA
+        </div>
+        
+        <div class="patient-info">
+            <div class="patient-field">
+                <label>Nama Pasien:</label>
+                <input type="text" id="patientName" />
+            </div>
+            <div class="patient-field">
+                <label>No. RM:</label>
+                <input type="text" id="medicalRecord" />
+            </div>
+            <div class="patient-field">
+                <label>Ruang/Kelas:</label>
+                <input type="text" id="room" />
+            </div>
+            <div class="patient-field">
+                <label>Tanggal/Jam:</label>
+                <input type="datetime-local" id="assessmentDateTime" />
+            </div>
+        </div>
+
+        <table class="assessment-table">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width: 20%;">Parameter Fisiologis</th>
+                    <th colspan="7">Skor</th>
+                </tr>
+                <tr>
+                    <th class="score-3">3</th>
+                    <th class="score-2">2</th>
+                    <th class="score-1">1</th>
+                    <th class="score-0">0</th>
+                    <th class="score-1">1</th>
+                    <th class="score-2">2</th>
+                    <th class="score-3">3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Respiratory Rate -->
+                <tr>
+                    <td class="parameter-name">Laju Napas (per menit)</td>
+                    <td class="score-3 radio-cell">
+                        <div>≤8</div>
+                        <input type="radio" name="respiratory_rate" value="3" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="respiratory_rate" value="0" disabled>
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>9-11</div>
+                        <input type="radio" name="respiratory_rate" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-0 radio-cell">
+                        <div>12-20</div>
+                        <input type="radio" name="respiratory_rate" value="0" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="respiratory_rate" value="0" disabled>
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>21-24</div>
+                        <input type="radio" name="respiratory_rate" value="2" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-3 radio-cell">
+                        <div>≥25</div>
+                        <input type="radio" name="respiratory_rate" value="3" onchange="calculateTotal()">
+                    </td>
+                </tr>
+                
+                <!-- Oxygen Saturation -->
+                <tr>
+                    <td class="parameter-name">Saturasi Oksigen (%)</td>
+                    <td class="score-3 radio-cell">
+                        <div>≤91</div>
+                        <input type="radio" name="oxygen_saturation" value="3" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>92-93</div>
+                        <input type="radio" name="oxygen_saturation" value="2" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>94-95</div>
+                        <input type="radio" name="oxygen_saturation" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-0 radio-cell">
+                        <div>≥96</div>
+                        <input type="radio" name="oxygen_saturation" value="0" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="oxygen_saturation" value="0" disabled>
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="oxygen_saturation" value="0" disabled>
+                    </td>
+                    <td class="score-3 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="oxygen_saturation" value="0" disabled>
+                    </td>
+                </tr>
+                
+                <!-- Temperature -->
+                <tr>
+                    <td class="parameter-name">Suhu Tubuh (°C)</td>
+                    <td class="score-3 radio-cell">
+                        <div>≤35.0</div>
+                        <input type="radio" name="temperature" value="3" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="temperature" value="0" disabled>
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>35.1-36.0</div>
+                        <input type="radio" name="temperature" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-0 radio-cell">
+                        <div>36.1-38.0</div>
+                        <input type="radio" name="temperature" value="0" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>38.1-39.0</div>
+                        <input type="radio" name="temperature" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="temperature" value="0" disabled>
+                    </td>
+                    <td class="score-3 radio-cell">
+                        <div>≥39.1</div>
+                        <input type="radio" name="temperature" value="3" onchange="calculateTotal()">
+                    </td>
+                </tr>
+                
+                <!-- Systolic Blood Pressure -->
+                <tr>
+                    <td class="parameter-name">Tekanan Darah Sistolik (mmHg)</td>
+                    <td class="score-3 radio-cell">
+                        <div>≤70</div>
+                        <input type="radio" name="systolic_bp" value="3" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>71-80</div>
+                        <input type="radio" name="systolic_bp" value="2" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>81-100</div>
+                        <input type="radio" name="systolic_bp" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-0 radio-cell">
+                        <div>101-180</div>
+                        <input type="radio" name="systolic_bp" value="0" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="systolic_bp" value="0" disabled>
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>181-200</div>
+                        <input type="radio" name="systolic_bp" value="2" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-3 radio-cell">
+                        <div>≥201</div>
+                        <input type="radio" name="systolic_bp" value="3" onchange="calculateTotal()">
+                    </td>
+                </tr>
+                
+                <!-- Heart Rate -->
+                <tr>
+                    <td class="parameter-name">Denyut Nadi (per menit)</td>
+                    <td class="score-3 radio-cell">
+                        <div>≤40</div>
+                        <input type="radio" name="heart_rate" value="3" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="heart_rate" value="0" disabled>
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>41-50</div>
+                        <input type="radio" name="heart_rate" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-0 radio-cell">
+                        <div>51-100</div>
+                        <input type="radio" name="heart_rate" value="0" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>101-110</div>
+                        <input type="radio" name="heart_rate" value="1" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>111-129</div>
+                        <input type="radio" name="heart_rate" value="2" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-3 radio-cell">
+                        <div>≥130</div>
+                        <input type="radio" name="heart_rate" value="3" onchange="calculateTotal()">
+                    </td>
+                </tr>
+                
+                <!-- Consciousness Level -->
+                <tr>
+                    <td class="parameter-name">Tingkat Kesadaran</td>
+                    <td class="score-3 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="consciousness" value="0" disabled>
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="consciousness" value="0" disabled>
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="consciousness" value="0" disabled>
+                    </td>
+                    <td class="score-0 radio-cell">
+                        <div>A (Alert)</div>
+                        <input type="radio" name="consciousness" value="0" onchange="calculateTotal()">
+                    </td>
+                    <td class="score-1 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="consciousness" value="0" disabled>
+                    </td>
+                    <td class="score-2 radio-cell">
+                        <div>-</div>
+                        <input type="radio" name="consciousness" value="0" disabled>
+                    </td>
+                    <td class="score-3 radio-cell">
+                        <div>V,P,U</div>
+                        <input type="radio" name="consciousness" value="3" onchange="calculateTotal()">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="total-section">
+            <div class="total-row">
+                <div><strong>TOTAL SKOR EWS:</strong></div>
+                <div class="total-score" id="totalScore">0</div>
+                <div class="risk-level" id="riskLevel">
+                    Lengkapi penilaian
+                </div>
+            </div>
+        </div>
+        
+        <table class="action-table">
+            <thead>
+                <tr>
+                    <th>Skor EWS</th>
+                    <th>Tingkat Risiko</th>
+                    <th>Tindakan yang Diperlukan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">0-4</td>
+                    <td style="color: #155724; font-weight: bold;">RENDAH</td>
+                    <td>
+                        • Monitoring rutin setiap 12 jam<br>
+                        • Lanjutkan perawatan standar<br>
+                        • Dokumentasi dalam rekam medis
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">5-6</td>
+                    <td style="color: #856404; font-weight: bold;">SEDANG</td>
+                    <td>
+                        • Monitoring setiap 4-6 jam<br>
+                        • Informasikan kepada dokter jaga<br>
+                        • Pertimbangkan konsultasi ke ICU<br>
+                        • Evaluasi kebutuhan oksigen tambahan
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">≥7</td>
+                    <td style="color: #721c24; font-weight: bold;">TINGGI</td>
+                    <td>
+                        • Monitoring kontinyu setiap 1-2 jam<br>
+                        • <strong>SEGERA</strong> hubungi dokter jaga<br>
+                        • Pertimbangkan transfer ke ICU/HCU<br>
+                        • Aktifkan rapid response team<br>
+                        • Siapkan resusitasi jika diperlukan
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="signature-section">
+            <div class="signature-box">
+                <div><strong>Perawat yang Menilai</strong></div>
+                <div class="signature-line"></div>
+                <div style="margin-top: 5px;">
+                    <input type="text" placeholder="Nama & Paraf" style="border: none; text-align: center; width: 100%;">
+                </div>
+            </div>
+            
+            <div class="signature-box">
+                <div><strong>Dokter Jaga</strong></div>
+                <div class="signature-line"></div>
+                <div style="margin-top: 5px;">
+                    <input type="text" placeholder="Nama & Paraf" style="border: none; text-align: center; width: 100%;">
+                </div>
+            </div>
+            
+            <div class="signature-box">
+                <div><strong>Kepala Ruangan</strong></div>
+                <div class="signature-line"></div>
+                <div style="margin-top: 5px;">
+                    <input type="text" placeholder="Nama & Paraf" style="border: none; text-align: center; width: 100%;">
+                </div>
+            </div>
+        </div>
+        
+        <!-- <button class="export-button" onclick="exportToWord()">
+            📄 Export ke File Word
+        </button> -->
+
+        <button class="submit-button" onclick="submitToSheet()">
+            📤 Kirim ke Google Sheets
+        </button>
+        
+        <div class="footer">
+            <p><strong>Form EWS Dewasa - RSUP HAM Medan</strong><br>
+            Dokumen ini merupakan bagian dari sistem peringatan dini untuk mencegah deteriorasi klinis pasien</p>
+        </div>
+    </div>
+      
+    <script src="/rsud/script.js"></script>
+</body>
+</html>
